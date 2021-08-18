@@ -17,7 +17,7 @@ const admin = "shivanshu";
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 io.on("connection", (socket) => {
   socket.on("JoinRoom", ({ username, room }) => {
@@ -63,4 +63,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5000 || process.env.PORT, console.log("server up"));
+const PORT = 5000 || process.env.PORT;
+
+server.listen(PORT, console.log(`server up${PORT}`));
