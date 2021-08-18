@@ -18,7 +18,11 @@ const admin = "shivanshu";
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/", express.static(path.join(__dirname, "public")));
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "/index.html"));
+});
 
 io.on("connection", (socket) => {
   socket.on("JoinRoom", ({ username, room }) => {
